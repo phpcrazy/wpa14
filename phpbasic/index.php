@@ -28,9 +28,11 @@ URI Request
 */
 
 ob_start();
-echo "Hello World!";
-echo "How are you?";
+$name = $_GET['name'];
+echo "Hello World!" . "<br />";
+echo "How are you?" . $name;
 $temp = ob_get_clean();
 echo $temp;
+
 
  ?>
