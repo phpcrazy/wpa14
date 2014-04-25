@@ -11,7 +11,7 @@
 }
 
 #logo h1 a {
-	background: url(img/logo.png) no-repeat;
+	background: url(/../img/logo.png) no-repeat;
 	width: 296px;
 	height: 72px;
 	display: block;

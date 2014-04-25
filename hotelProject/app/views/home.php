@@ -1,35 +1,5 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Basic PHP Course</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-carousel.js"></script>
-</head>
-<body>
-	<div class="container">
-		<div id="header" class="row">
-			<div id="logo" class="span3">
-				<h1><a href="#">Myanmar Tutorials</a></h1>
-			</div> <!-- end of logo -->
-			<div id="menu" class="span9">
-				<div id="nav" class="navbar">
-					<div class="navbar-inner">
-						<ul class="nav">
-							<li class="active"><a href="#">About Us</a></li>
-							<li><a href="#">Doctors</a></li>
-							<li><a href="#">Treatments</a></li>
-							<li><a href="#">Hospitals</a></li>
-							<li><a href="#">Services</a></li>
-							<li><a href="#">Contact Us</a></li>
-						</ul>
-					</div>
-				</div>
-			</div> <!-- end of menu -->
-		</div> <!-- end of header -->
+<?php load_view('header'); ?>
+
 		<div id="content" class="row">
 			<div id="left_content" class="span9">
 				<div id="slider">
@@ -102,40 +72,4 @@
 			</div> <!-- end of right_content -->
 			
 		</div> <!-- end of content -->
-		<div id="footer" class="row">
-			<div class="span4">
-				<ul>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-				</ul>
-			</div>
-			<div class="span4">
-				<ul>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-				</ul>
-			</div>
-			<div class="span4">
-				<ul>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-					<li><a href="#">List Item</a></li>
-				</ul>
-			</div>
-		</div> <!-- end of footer -->
-		<div id="bottom-footer" class="row">
-			<div class="span12">
-				<p>Copyright 2013, Myanmar Tutorials</p>
-			</div>
-		</div>
-	</div> <!-- end of container -->
-</body>
-</html>
+<?php load_view('footer'); ?>
