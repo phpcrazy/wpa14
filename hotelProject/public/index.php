@@ -3,56 +3,67 @@
 
 define('DD', __DIR__ . '/../');
 
-require DD . '/src/helpers.php';  
+require DD . '/src/helpers.php'; 
+require DD . '/app/controllers/controller.php'; 
 
+
+// Get Request URI
 $requestURI = explode('/', $_SERVER['REQUEST_URI']);
+// Get Script Name
 $scriptName = explode('/',$_SERVER['SCRIPT_NAME']);
-
-var_dump($requestURI);
-var_dump($scriptName);
-
+// Substract Array
 $request_uri = array_diff($requestURI, $scriptName);
+// Array Reset
 $request_uri = array_values($request_uri);
-var_dump($request_uri);
 
-if($request_uri[0] == 'blog') {
-	load_view('blog');
+if(empty($request_uri)) {
+	$request_uri[0] = 'home';
 }
 
+$function = $request_uri[0];
+$passing_variables = array_slice($request_uri, 1);
+dump($passing_variables);
 
-// $epath_info = explode('/', $path_info);
-// var_dump($epath_info);
-die();
-
-if(isset($_GET['page'])) {
-	$page = $_GET['page'];
+if(function_exists($function)) {
+	call_user_func_array($function, array(&$passing_variables));
 } else {
-	$page = 'home';
-}
-if($page == 'blog') {
-	load_view('blog');
-	// require DD . '/app/views/blog.php';
-} elseif ($page == 'home') {
-	load_view('home');
-	// require DD . '/app/views/home.php';
-} elseif( $page == 'about-us') {
-	load_view('about');
-} else {
-	load_view('404');
+	echo "404";
 }
 
-// $int = 4;
-// $float = 4.0;
 
-// if ($int == $float) {
-// 	echo "They are same value";
-// } 
+// // $epath_info = explode('/', $path_info);
+// // var_dump($epath_info);
+// die();
 
-// if($int === $float) {
-
+// if(isset($_GET['page'])) {
+// 	$page = $_GET['page'];
 // } else {
-// 	echo "They are not identical!";
+// 	$page = 'home';
 // }
+// if($page == 'blog') {
+// 	load_view('blog');
+// 	// require DD . '/app/views/blog.php';
+// } elseif ($page == 'home') {
+// 	load_view('home');
+// 	// require DD . '/app/views/home.php';
+// } elseif( $page == 'about-us') {
+// 	load_view('about');
+// } else {
+// 	load_view('404');
+// }
+
+// // $int = 4;
+// // $float = 4.0;
+
+// // if ($int == $float) {
+// // 	echo "They are same value";
+// // } 
+
+// // if($int === $float) {
+
+// // } else {
+// // 	echo "They are not identical!";
+// // }
 
 
 ?>
