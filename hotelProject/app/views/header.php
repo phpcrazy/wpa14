@@ -3,11 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Basic PHP Course</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-carousel.js"></script>
+	<?php load_css('css/bootstrap.css'); ?>
+	<?php load_css('css/style.css'); ?>
+	<?php load_js('js/jquery.min.js'); ?>
+	<?php load_js('js/bootstrap.min.js'); ?>
+	<?php load_js('js/bootstrap-carousel.js'); ?>
 </head>
 <body>
 	<div class="container">

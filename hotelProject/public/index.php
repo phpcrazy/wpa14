@@ -1,9 +1,11 @@
 <?php 
 
-
 define('DD', __DIR__ . '/../');
 
+
 require DD . '/src/helpers.php'; 
+require DD . '/src/loader/ViewLoader.php';
+require DD . '/src/loader/ConfigLoader.php';
 require DD . '/app/controllers/controller.php'; 
 
 
@@ -20,15 +22,52 @@ if(empty($request_uri)) {
 	$request_uri[0] = 'home';
 }
 
-$function = $request_uri[0];
+$route = $request_uri[0];
 $passing_variables = array_slice($request_uri, 1);
-dump($passing_variables);
 
-if(function_exists($function)) {
-	call_user_func_array($function, array(&$passing_variables));
-} else {
-	echo "404";
-}
+$routes = array(
+	array(
+		'route'			=> 'home',
+		'controller'	=> 'home'
+		),
+	array(
+		'route'			=> 'blog',
+		'controller'	=> 'blog'
+		)
+	);
+
+	$i = 0;
+	$key_found = false;
+
+	foreach($routes as $r) {
+		if($route == $r['route']) {
+			$key_found = true;
+			$key_index = $i;
+		}
+		$i++;
+	}
+	if($key_found == true) {
+		if(function_exists($routes[$key_index]['controller'])) {
+			call_user_func_array($routes[$key_index]['controller'],array());
+		} else {
+			echo 'Controller not found!';
+		}
+	} else {
+		echo "404";
+	} 
+	
+
+
+	// if($route == $routes['route']) {
+	// 	if(function_exists($routes['controller'])) {
+	// 		call_user_func_array($routes['controller'],array());
+	// 	} else {
+	// 		echo "Your controller not found!";
+	// 	}
+	// } else {
+	// 	echo "404";
+	// }
+
 
 
 // // $epath_info = explode('/', $path_info);

@@ -13,8 +13,5 @@ function blog() {
 	load_view('blog');
 }
 
-function test() {
-	echo "Testing One, Two, Three ";
-}
 
  ?>
