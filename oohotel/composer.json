@@ -1,6 +1,7 @@
 {
 	"autoload": {
 		"classmap": [
+			"app/controllers",
 			"wpa14/loaders"
 		],
 		"files": [
