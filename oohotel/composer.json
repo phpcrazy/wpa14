@@ -1,5 +1,8 @@
 {
 	"autoload": {
+		"psr-0": {
+			"Wpa14\\" : "wpa14/src/"
+			},
 		"classmap": [
 			"app/controllers",
 			"wpa14/loaders"
