@@ -4,7 +4,7 @@ class Order {
 	public function createOrder() {
 		// Appli logic to create order
 		$this->order_status = 'Order Created';
-		return $this;
+		return $this; // important
 	}
 	public function sendOrderEmail() {
 		// Apply logic for sending email to order
@@ -18,6 +18,10 @@ class Order {
 	}
 }
 $a = new Order();
+$a->createOrder();
+var_dump($a);
+$a->createOrder()->sendOrderEmail();
+var_dump($a);
 $a->createOrder()->sendOrderEmail()->createShipment();
 var_dump($a->order_status);
  ?>

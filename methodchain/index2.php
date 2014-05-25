@@ -1,17 +1,24 @@
 <?php 
+
 class TestClass
 {   
     public static $currentValue;
+    
+    // static property - to hold a dynamic method
     private static $_instance = null;
-    private function __construct () {
-    }
-    public static function getInstance ()
+
+    public static function getInstance()
     {
         if (self::$_instance === null) {
             self::$_instance = new self;
         }
         return self::$_instance;
     }
+
+    private function __construct () {
+        echo "construct!";
+    }
+    
     public function toValue($value) {
         self::$currentValue = $value;
         return $this;
@@ -30,7 +37,7 @@ class TestClass
 }
 
 // Example Usage:
-$result = TestClass::getInstance ()
+$result = TestClass::getInstance()
     ->toValue(5)
     ->add(3)
     ->subtract(2)

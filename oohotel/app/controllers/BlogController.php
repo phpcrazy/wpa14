@@ -1,8 +1,9 @@
 <?php 
 
 class BlogController {
-	public function actionIndex() {
-		echo "Blog Area!";
+	public function actionIndex() {	
+		$customers = DB::table('customers')->get();
+		dump($customers);
 	}
 }
 
