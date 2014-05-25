@@ -5,7 +5,8 @@
 			},
 		"classmap": [
 			"app/controllers",
-			"wpa14/loaders"
+			"wpa14/loaders",
+			"wpa14/providers"
 		],
 		"files": [
 			"wpa14/helpers.php"
