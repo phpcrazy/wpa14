@@ -8,6 +8,10 @@ return array(
 			array(
 				'route'		=> '',
 				'controller'	=> 'HomeController@actionIndex'
+				),
+			array(
+				'route'			=> 'newblog',
+				'controller'	=> 'BlogController@blog'
 				)
 			
 			);
