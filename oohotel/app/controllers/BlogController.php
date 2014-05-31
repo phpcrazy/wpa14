@@ -7,14 +7,33 @@ class BlogController {
 	}
 
 	public function blog() {
-		$customer = DB::table('customers')
-					->where(array('id' => '2'))
-					->get();
-		dump($customer);
+		// SELECT & FROM customers
+		// $customer = DB::table('customers')
+		// 			->get();
+		// dump($customer);
+
+		// // SELECT * FROM customers limit 1
+		// $customer = DB::table('customers')
+		// 			->first();
+		// dump($customer);
+
+		// // SELECT * FROM customers WHERE name = 'Aung Aung' LIMIT 1
+		// $customer = DB::table('customers')
+		// 			->where('name', 'Aung Aung')
+		// 			->first();
+		// dump($customer);
+
+		// SELECT * FROM customers WHERE name = 'Aung Aung' OR name = 'Baung Baung'
+		
 		$customers = DB::table('customers')
-					->orWhere(array('id' => 2, 'name' => 'Aung Aung'))
+					->where('name', 'Aung Aung')
+					->orWhere('name', 'Baung Baung')
 					->get();
 		dump($customers);
+		// $customers = DB::table('customers')
+		// 			->orWhere(array('id' => 2, 'name' => 'Aung Aung'))
+		// 			->get();
+		// dump($customers);
 	}
 }
 

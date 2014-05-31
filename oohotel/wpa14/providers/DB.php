@@ -2,10 +2,12 @@
 class DB {
 	// class container
 	private static $_instance = null;
+
 	private $tablename;
 	private $connection;
-	private $where = false;
-	private $whereArray; 
+
+	private $sql; 
+	private $execute_array;
 
 	// class instantiator
 	public static function table($tablename) {
@@ -13,6 +15,8 @@ class DB {
 			self::$_instance = new self; // object created!
 		}
 		self::$_instance->tablename = $tablename;
+		self::$_instance->sql = 'SELECT * FROM ' . $tablename;
+		self::$_instance->execute_array = array();
 		return self::$_instance;
 	}
 
@@ -32,34 +36,46 @@ class DB {
 		}
 	}
 
-	public function where($array) {
-		$this->where = true;
-		$this->whereArray = $array;
+	public function where($key, $value) {
+		$this->sql = 'SELECT * FROM ' . $this->tablename;
+		$this->sql .= ' WHERE ' . $key . ' = :' . $key;
+		$this->execute_array = array(
+			$key => $value
+			);
 		return $this;
 	}
-	
-	// SELECT * FROM customers WHERE id = 1 OR name = 'Baung Baung'
-	// SELECT * FROM customers WHERE id = :id OR name = :name
-	public function get() {
-		if($this->where == false) {
-			$sql = 'SELECT * FROM ' . $this->tablename;
-			$query = $this->connection->query($sql);
-			return $query->fetchAll(PDO::FETCH_ASSOC);	
-		} else {
-			// dump($this->whereArray, true);
-			// $sql = "SELECT * FROM customers WHERE name = :name";
 
-			$sql = "SELECT * FROM " . $this->tablename;
-			$sql .= ' WHERE ' . array_keys($this->whereArray)[0];
-			$sql .= ' = :' . array_keys($this->whereArray)[0];
-
-			$prep = $this->connection->prepare($sql);
-			$prep->execute($this->whereArray);
-			return $prep->fetch(PDO::FETCH_ASSOC);
-		}
-		
+	public function orWhere($key, $value) {
+		$this->sql .= ' OR ' . $key .  ' = :' . $key . '2';
+		$first_array = serialize($this->execute_array);
+		$or_array = array(
+			$key . 2 => $value
+			);
+		$second_array = serialize($or_array);
+		$second_count = strlen($second_array);
+		$second_array = substr($second_array, 5, $second_count);
+		$first_array = str_replace('a:1', 'a:2', $first_array);
+		$first_array = substr($first_array, 0, -1);
+		$final_array = $first_array . $second_array;
+		dump($final_array);
+		$this->execute_array = unserialize($final_array);
+		dump($this->execute_array);
+		return $this;
 	}
 
+	public function get() {
+		dump($this->sql);
+		dump($this->execute_array);
+		$prep = $this->connection->prepare($this->sql);
+		$prep->execute($this->execute_array);
+		return $prep->fetchAll(PDO::FETCH_ASSOC);	
+	}
+
+	public function first() {
+		$prep = $this->connection->prepare($this->sql);
+		$prep->execute($this->execute_array);
+		return $prep->fetch(PDO::FETCH_ASSOC);	
+	}
 }
 
  ?>
