@@ -10,5 +10,6 @@ return array(
     'Config' => $baseDir . '/wpa14/loaders/ConfigLoader.php',
     'DB' => $baseDir . '/wpa14/providers/DB.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
+    'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'View' => $baseDir . '/wpa14/loaders/ViewLoader.php',
 );

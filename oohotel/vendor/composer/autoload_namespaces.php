@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Wpa14\\' => array($baseDir . '/wpa14/src'),
+    'Symfony\\Component\\Routing\\' => array($vendorDir . '/symfony/routing'),
+    'Symfony\\Component\\HttpFoundation\\' => array($vendorDir . '/symfony/http-foundation'),
 );

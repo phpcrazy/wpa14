@@ -15,6 +15,7 @@ class Application {
 	}
 
 	private function getRequestUri() {
+		// RequestContext
 		$requestURI = explode('/', $_SERVER['REQUEST_URI']);
 		$scriptName = explode('/',$_SERVER['SCRIPT_NAME']);
 		$request_uri = array_diff($requestURI, $scriptName);
@@ -23,8 +24,10 @@ class Application {
 	}
 
 	public function run() {
+		// RouteCollection
 		$routes = require DD . '/app/routes.php';
 
+		// UrlMatcher
 		if(empty($this->request_uri)) {
 			$key_found = false;
 			foreach($routes as $route) {
