@@ -1,7 +1,11 @@
 <?php 
 
 class BlogController {
-	public function actionIndex() {	
+	public function __construct() {
+		echo "Hello";
+	}
+	
+	public function actionIndex($id) {	
 		$customers = DB::table('customers')->get();
 		dump($customers);
 	}
